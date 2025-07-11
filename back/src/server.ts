@@ -35,3 +35,4 @@ app.register(createQuestionRoute)
 app.register(uploadAudioRoute)
 
 app.listen({ port: env.PORT })
+   .then(() => {console.log(`Server running on http://localhost:${env.PORT}`)})

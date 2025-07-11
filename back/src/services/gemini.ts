@@ -1,6 +1,10 @@
 import { GoogleGenAI } from '@google/genai'
 import { env } from '../env.ts'
 
+// All models used here are free of charge on the free tier: https://ai.google.dev/gemini-api/docs/pricing
+
+// API calls examples: https://aistudio.google.com/app/apikey
+
 const gemini = new GoogleGenAI({
   apiKey: env.GEMINI_API_KEY,
 })
