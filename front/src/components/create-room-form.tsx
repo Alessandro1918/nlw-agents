@@ -31,7 +31,7 @@ type CreateRoomFormData = z.infer<typeof createRoomSchema>
 export function CreateRoomForm() {
   const { mutateAsync: createRoom } = createRoomService()
 
-  const createRoomForm = useForm<CreateRoomFormData>({
+  const form = useForm<CreateRoomFormData>({
     resolver: zodResolver(createRoomSchema),
     defaultValues: {
       name: '',
@@ -42,7 +42,7 @@ export function CreateRoomForm() {
   async function handleCreateRoom({ name, description }: CreateRoomFormData) {
     await createRoom({ name, description })
 
-    createRoomForm.reset()
+    form.reset()
   }
 
   return (
@@ -55,13 +55,13 @@ export function CreateRoomForm() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Form {...createRoomForm}>
+        <Form {...form}>
           <form
             className="flex flex-col gap-4"
-            onSubmit={createRoomForm.handleSubmit(handleCreateRoom)}
+            onSubmit={form.handleSubmit(handleCreateRoom)}
           >
             <FormField
-              control={createRoomForm.control}
+              control={form.control}
               name="name"
               render={({ field }) => {
                 return (
@@ -80,7 +80,7 @@ export function CreateRoomForm() {
             />
 
             <FormField
-              control={createRoomForm.control}
+              control={form.control}
               name="description"
               render={({ field }) => {
                 return (
